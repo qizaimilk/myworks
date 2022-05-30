@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>
+            倒计时
+        </title>
+    </head>
+    <style>
+        button{
+            position: fixed;
+            left: 50%;
+            top: 10px;
+        }
+        p{
+            text-align: center;
+            font-size: 50px;
+        }
+        span{
+            color: brown;
+        }
+    </style>
+    <body>
+        <button id="start">计时开始</button>
+        <p>
+            Time passed <span id="counter">0</span> s
+        </p>
+    </body>
+    <script>
+        const buttonElement = document.querySelector("button");
+        const counterElement = document.getElementById("counter");
+        let intervalId = null;
+        let started = false;
+        buttonElement.addEventListener("click",() =>{
+            if(!started){
+                intervalId = setInterval(() => {
+                    counterElement.textContent = String(Number(counterElement.textContent)+1);
+                },1000);
+                buttonElement.textContent = "计时暂停";
+            }else {
+                clearInterval(intervalId);
+                buttonElement.textContent = "计时开始";
+            }
+            started = !started;
+        });
+    </script>
+</html>
